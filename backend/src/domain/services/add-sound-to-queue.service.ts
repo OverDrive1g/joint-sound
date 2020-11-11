@@ -2,11 +2,13 @@ import {AddSoundToQueueUseCase, AddSoundToQueueError} from '../pors/in/add-sound
 import {AddSoundToQueueCommand} from '../pors/in/add-sound-to-queue/add-sound-to-queue.command';
 import {LoadQueuePort} from '../pors/out/load-queue.port';
 import {Either,left, right} from '@sweet-monads/either';
+import {UpdateQueuePort} from '../pors/out/update-queue.port';
 
 export class AddSoundToQueueService implements AddSoundToQueueUseCase{
 
   constructor(
     private readonly _loadQueue:LoadQueuePort,
+    private readonly _updateQueue:UpdateQueuePort
   ){}
 
   async execute(command:AddSoundToQueueCommand):Promise<Either<AddSoundToQueueError, void>>{
@@ -16,10 +18,19 @@ export class AddSoundToQueueService implements AddSoundToQueueUseCase{
       return left(new AddSoundToQueueError('Load queue error'))
     }
 
-   //TODO save
+    const queueEntity = loadResult.value
+    queueEntity.sounds.push(command.sound)
 
-
-    return right((()=>{})()) // THIS IS DIRTY HACK
+    const updateQueueResult = await this._updateQueue.updateQueue(queueEntity)
+    
+    return updateQueueResult
+      .mapLeft(updateError=>{
+        console.log('Update error', updateError.stack)
+        return new AddSoundToQueueError()
+      })
+      .mapRight(updateResult=>{
+        return
+      })
   }
 
 }

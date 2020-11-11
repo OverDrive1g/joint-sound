@@ -1,19 +1,64 @@
 import { Injectable } from '@nestjs/common';
-import {CreateQueuePort } from '../../domain/pors/out/create-queue.port'
-import {QueueEntity} from 'src/domain/entities/queue.entity';
-import {UpdateQueuePort} from 'src/domain/pors/out/update-queue.port';
-
+import { Either, right, left } from '@sweet-monads/either';
+import {QueueEntity, QueueId} from 'src/domain/entities/queue.entity';
+import {UpdateQueuePort, UpdateQueueError} from 'src/domain/pors/out/update-queue.port';
+import {LoadQueuePort, LoadQueueError} from 'src/domain/pors/out/load-queue.port';
+import {SaveQueuePort,SaveQueueError} from 'src/domain/pors/out/save-queue.port';
+import {v4 as uuid} from 'uuid'
 @Injectable()
 export class QueuePersistenceAdapterService 
   implements
-    CreateQueuePort,
-    UpdateQueuePort
+    SaveQueuePort,
+    UpdateQueuePort,
+    LoadQueuePort
 {
-  async createQueue(queue:QueueEntity):Promise<QueueEntity>{
-    throw "err"
-  }
   
-  async updateQueue(queue:QueueEntity):Promise<QueueEntity>{
-    throw "err"
+  private _queues:QueueEntity[]
+
+  constructor(){
+    this._queues = []
+  } 
+
+  async loadQueue(queueId:QueueId):Promise<Either<LoadQueueError, QueueEntity>>{
+    try{
+      const foundQueue = this._queues.find(queue=>queue.queueId === queueId)
+      if(!foundQueue){
+        return left(new LoadQueueError('Queue not found'))
+      }
+      
+      return right(foundQueue)
+    }
+    catch(e){
+      return left(new LoadQueueError())
+    }
+  }
+
+  async updateQueue(newQueue:QueueEntity):Promise<Either<UpdateQueueError, QueueEntity>>{ 
+    try{
+      const foundQueueIndex = this._queues.findIndex(queue=>queue.queueId === newQueue.queueId)
+      if(foundQueueIndex === -1){
+        return left(new UpdateQueueError('Queue not found'))
+      }
+      
+      this._queues[foundQueueIndex] = newQueue
+
+      return right(newQueue)
+    }
+    catch(e){
+      return left(new UpdateQueueError())
+    }
+  }
+
+  async saveQueue(queue:QueueEntity):Promise<Either<SaveQueueError, QueueEntity>>{
+    const newQueueId = uuid()
+
+    //TODO add check
+    
+    const newQueueEntity = new QueueEntity(newQueueId, queue.name, [])
+
+    this._queues.push(newQueueEntity)
+
+    return right(newQueueEntity)
   }
 }
+
