@@ -16,8 +16,12 @@ export class AddSoundToQueueController{
     @Body() soundData:any,
     @Param('queue_id') queueId:string
   ){
-    const command = new AddSoundToQueueCommand("test user id", queueId,
-                           new SoundEntity(soundData.name, soundData.source))
-    return this._addSoundService.execute(command)
+    const command = new AddSoundToQueueCommand("test user id", queueId,soundData.url)
+    const result = await this._addSoundService.execute(command)
+
+    return result.mapLeft(error=>{
+      
+      return {error:error.name + error.message}                    
+    })
   }
 }

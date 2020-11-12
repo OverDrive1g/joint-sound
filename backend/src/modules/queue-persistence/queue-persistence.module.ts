@@ -17,7 +17,7 @@ import {CreateQueueService} from "src/domain/services/create-queue.service";
     {
       provide: AddSoundToQueueUseCaseSymbol,
       useFactory:(service:QueuePersistenceAdapterService)=>{
-        return new AddSoundToQueueService(service, service)
+        return new AddSoundToQueueService(service, service,service)
       },
       inject: [QueuePersistenceAdapterService]
     },

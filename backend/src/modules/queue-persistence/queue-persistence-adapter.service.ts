@@ -5,12 +5,14 @@ import {UpdateQueuePort, UpdateQueueError} from 'src/domain/pors/out/update-queu
 import {LoadQueuePort, LoadQueueError} from 'src/domain/pors/out/load-queue.port';
 import {SaveQueuePort,SaveQueueError} from 'src/domain/pors/out/save-queue.port';
 import {v4 as uuid} from 'uuid'
+import {LoadVideoInfoFromYtPort, LoadVideoInfoFromYtError, VideoInfo} from 'src/domain/pors/out/load-video-info-from-yt.port';
 @Injectable()
 export class QueuePersistenceAdapterService 
   implements
     SaveQueuePort,
     UpdateQueuePort,
-    LoadQueuePort
+    LoadQueuePort,
+    LoadVideoInfoFromYtPort
 {
   
   private _queues:QueueEntity[]
@@ -59,6 +61,13 @@ export class QueuePersistenceAdapterService
     this._queues.push(newQueueEntity)
 
     return right(newQueueEntity)
+  }
+
+  async loadInfo(videoId:string):Promise<Either<LoadVideoInfoFromYtError, VideoInfo>>{
+    return right({
+      duration:120,
+      viewCount:5000      
+    })
   }
 }
 

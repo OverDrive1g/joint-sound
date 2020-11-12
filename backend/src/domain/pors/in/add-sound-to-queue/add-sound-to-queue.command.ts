@@ -1,12 +1,11 @@
 import {UserId} from '../../../entities/user.entity';
 import {QueueId} from '../../../entities/queue.entity';
-import {SoundEntity} from '../../../entities/sound.entity';
 
 export class AddSoundToQueueCommand{
   constructor(
     private _creatorId:UserId,
     private _queueId:QueueId,
-    private _sound: SoundEntity,
+    private _soundSource: string,
   ){}
 
   get creatorId(){
@@ -17,7 +16,7 @@ export class AddSoundToQueueCommand{
     return this._queueId;
   }
 
-  get sound(){
-    return this._sound;
+  get soundSource(){
+    return this._soundSource;
   }
 }

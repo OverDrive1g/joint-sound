@@ -5,4 +5,6 @@ export class SoundEntity {
     private readonly name:string,
     private readonly source:string,
   ){}
+
+
 }
