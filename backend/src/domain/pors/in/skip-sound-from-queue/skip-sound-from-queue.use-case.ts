@@ -1,3 +1,3 @@
-import {BaseUseCase} from '../base.use-case';
+import { BaseUseCase } from '../base.use-case';
 
-export interface SkipSoundFromQueueUseCase extends BaseUseCase<any,any>{}
+export type SkipSoundFromQueueUseCase = BaseUseCase<any, any>

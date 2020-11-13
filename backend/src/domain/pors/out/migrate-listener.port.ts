@@ -1,8 +1,8 @@
-import {QueueId} from '../../entities/queue.entity';
+import { QueueId } from '../../entities/queue.entity';
 
-export interface MigrateListenerPort{
+export interface MigrateListenerPort {
   /**
    * Method for change listener subscription
    */
-  migrate(listenerId:string, migrateTo:QueueId):Promise<void>
+  migrate(listenerId: string, migrateTo: QueueId): Promise<void>;
 }

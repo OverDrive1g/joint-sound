@@ -1,18 +1,15 @@
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid';
 export class ListenerEntity {
-  private _listenerId:string
-  constructor(
-    private readonly _wsConnecion:any
-  ){
-    this._listenerId = uuid()
+  private _listenerId: string;
+  constructor(private readonly _wsConnecion: any) {
+    this._listenerId = uuid();
   }
-  
-  get listenerId(){
+
+  get listenerId() {
     return this._listenerId;
   }
 
-  get wsConnection(){
+  get wsConnection() {
     return this._wsConnecion;
   }
-
 }

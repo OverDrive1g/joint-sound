@@ -1,10 +1,3 @@
-
-
 export class SoundEntity {
-  constructor(
-    private readonly name:string,
-    private readonly source:string,
-  ){}
-
-
+  constructor(private readonly name: string, private readonly source: string) {}
 }

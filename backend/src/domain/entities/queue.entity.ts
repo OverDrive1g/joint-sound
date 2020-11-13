@@ -1,22 +1,22 @@
-import {SoundEntity} from "./sound.entity";
+import { SoundEntity } from './sound.entity';
 
 export type QueueId = string | null;
 export class QueueEntity {
   constructor(
-    private readonly _queueId:QueueId,
-    private readonly _name:string,
-    private readonly _sounds:SoundEntity[],
-  ){}
+    private readonly _queueId: QueueId,
+    private readonly _name: string,
+    private readonly _sounds: SoundEntity[],
+  ) {}
 
-  get queueId():QueueId{
+  get queueId(): QueueId {
     return this._queueId;
   }
 
-  get name():string{
+  get name(): string {
     return this._name;
   }
 
-  get sounds():SoundEntity[]{
+  get sounds(): SoundEntity[] {
     return this._sounds;
   }
 }

@@ -1,4 +1,3 @@
-
-export interface LieaveListenerPort{
-  leae(listenerId:string):Promise<void>
+export interface LieaveListenerPort {
+  leae(listenerId: string): Promise<void>;
 }

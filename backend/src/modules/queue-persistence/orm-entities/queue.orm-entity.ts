@@ -1,15 +1,14 @@
-import { Column, Entity, PrimaryColumn} from 'typeorm'
-
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('queue', {})
 export class QueueOrmEntity {
   @Column()
   @PrimaryColumn()
-  queueId: string
+  queueId: string;
 
   @Column()
-  title: string
+  title: string;
 
   @Column()
-  ownerId: string
+  ownerId: string;
 }
