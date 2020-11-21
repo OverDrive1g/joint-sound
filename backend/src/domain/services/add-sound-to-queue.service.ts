@@ -1,12 +1,12 @@
 import {
   AddSoundToQueueUseCase,
   AddSoundToQueueError,
-} from '../pors/in/add-sound-to-queue/add-sound-to-queue.use-case';
-import { AddSoundToQueueCommand } from '../pors/in/add-sound-to-queue/add-sound-to-queue.command';
-import { LoadQueuePort } from '../pors/out/load-queue.port';
+} from '../ports/in/add-sound-to-queue/add-sound-to-queue.use-case';
+import { AddSoundToQueueCommand } from '../ports/in/add-sound-to-queue/add-sound-to-queue.command';
+import { LoadQueuePort } from '../ports/out/load-queue.port';
 import { Either, left, right } from '@sweet-monads/either';
-import { UpdateQueuePort } from '../pors/out/update-queue.port';
-import { LoadVideoInfoFromYtPort } from '../pors/out/load-video-info-from-yt.port';
+import { UpdateQueuePort } from '../ports/out/update-queue.port';
+import { LoadVideoInfoFromYtPort } from '../ports/out/load-video-info-from-yt.port';
 import { SoundEntity } from '../entities/sound.entity';
 
 export class AddSoundToQueueService implements AddSoundToQueueUseCase {

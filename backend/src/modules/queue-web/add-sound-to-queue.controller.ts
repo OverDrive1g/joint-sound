@@ -2,9 +2,8 @@ import { Controller, Post, Body, Param, Inject } from '@nestjs/common';
 import {
   AddSoundToQueueUseCaseSymbol,
   AddSoundToQueueUseCase,
-} from 'src/domain/pors/in/add-sound-to-queue/add-sound-to-queue.use-case';
-import { AddSoundToQueueCommand } from 'src/domain/pors/in/add-sound-to-queue/add-sound-to-queue.command';
-import { SoundEntity } from 'src/domain/entities/sound.entity';
+} from 'src/domain/ports/in/add-sound-to-queue/add-sound-to-queue.use-case';
+import { AddSoundToQueueCommand } from 'src/domain/ports/in/add-sound-to-queue/add-sound-to-queue.command';
 
 @Controller('/queue/add-sound')
 export class AddSoundToQueueController {

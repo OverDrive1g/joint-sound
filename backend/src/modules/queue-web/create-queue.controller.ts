@@ -2,8 +2,8 @@ import { Controller, Post, Body, Inject } from '@nestjs/common';
 import {
   CreateQueueUseCaseSymbol,
   CreateQueueUseCase,
-} from 'src/domain/pors/in/create-queue/create-queue.use-case';
-import { CreateQueueCommand } from 'src/domain/pors/in/create-queue/create-queue.command';
+} from 'src/domain/ports/in/create-queue/create-queue.use-case';
+import { CreateQueueCommand } from 'src/domain/ports/in/create-queue/create-queue.command';
 import { QueueEntity } from 'src/domain/entities/queue.entity';
 
 @Controller('/queue/create')

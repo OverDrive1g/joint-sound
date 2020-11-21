@@ -1,10 +1,10 @@
 import {
   CreateQueueUseCase,
   CreateQueueError,
-} from '../pors/in/create-queue/create-queue.use-case';
-import { CreateQueueCommand } from '../pors/in/create-queue/create-queue.command';
+} from '../ports/in/create-queue/create-queue.use-case';
+import { CreateQueueCommand } from '../ports/in/create-queue/create-queue.command';
 import { QueueId } from '../entities/queue.entity';
-import { SaveQueuePort } from '../pors/out/save-queue.port';
+import { SaveQueuePort } from '../ports/out/save-queue.port';
 import { Either } from '@sweet-monads/either';
 
 export class CreateQueueService implements CreateQueueUseCase {

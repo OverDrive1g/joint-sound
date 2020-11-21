@@ -4,21 +4,21 @@ import { QueueEntity, QueueId } from 'src/domain/entities/queue.entity';
 import {
   UpdateQueuePort,
   UpdateQueueError,
-} from 'src/domain/pors/out/update-queue.port';
+} from 'src/domain/ports/out/update-queue.port';
 import {
   LoadQueuePort,
   LoadQueueError,
-} from 'src/domain/pors/out/load-queue.port';
+} from 'src/domain/ports/out/load-queue.port';
 import {
   SaveQueuePort,
   SaveQueueError,
-} from 'src/domain/pors/out/save-queue.port';
+} from 'src/domain/ports/out/save-queue.port';
 import { v4 as uuid } from 'uuid';
 import {
   LoadVideoInfoFromYtPort,
   LoadVideoInfoFromYtError,
   VideoInfo,
-} from 'src/domain/pors/out/load-video-info-from-yt.port';
+} from 'src/domain/ports/out/load-video-info-from-yt.port';
 @Injectable()
 export class QueuePersistenceAdapterService
   implements
