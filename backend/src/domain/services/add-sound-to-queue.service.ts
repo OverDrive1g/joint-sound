@@ -47,7 +47,10 @@ export class AddSoundToQueueService implements AddSoundToQueueUseCase {
     }
 
     const queueEntity = loadQueueResult.value;
-    queueEntity.sounds.push(new SoundEntity('', command.soundSource));
+    const thistrackFrom = 0;
+    queueEntity.sounds.push(
+      new SoundEntity('', command.soundSource, thistrackFrom),
+    );
 
     const updateQueueResult = await this._updateQueue.updateQueue(queueEntity);
 

@@ -21,11 +21,7 @@ import {
 } from 'src/domain/ports/out/load-video-info-from-yt.port';
 @Injectable()
 export class QueuePersistenceAdapterService
-  implements
-    SaveQueuePort,
-    UpdateQueuePort,
-    LoadQueuePort,
-    LoadVideoInfoFromYtPort {
+  implements SaveQueuePort, UpdateQueuePort, LoadQueuePort {
   private _queues: QueueEntity[];
 
   constructor() {
@@ -78,14 +74,5 @@ export class QueuePersistenceAdapterService
     this._queues.push(newQueueEntity);
 
     return right(newQueueEntity);
-  }
-
-  async loadInfo(
-    videoId: string,
-  ): Promise<Either<LoadVideoInfoFromYtError, VideoInfo>> {
-    return right({
-      duration: 120,
-      viewCount: 5000,
-    });
   }
 }
