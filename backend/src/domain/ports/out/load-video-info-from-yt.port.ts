@@ -1,5 +1,6 @@
 import { Either } from '@sweet-monads/either';
 
+export const LoadVideoInfoFromYtPortSymbol = Symbol('LoadVideoInfoFromYtPort');
 export interface LoadVideoInfoFromYtPort {
   loadInfo(
     videoId: string,

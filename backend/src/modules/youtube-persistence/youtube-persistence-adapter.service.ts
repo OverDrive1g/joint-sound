@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { Either, left, right } from '@sweet-monads/either';
 import * as request from 'request-promise';
 import {
@@ -6,11 +7,14 @@ import {
   VideoInfo,
 } from '../../domain/ports/out/load-video-info-from-yt.port';
 
+@Injectable()
 export class YoutubePersistenceAdapterService
   implements LoadVideoInfoFromYtPort {
   private YT_URL = 'https://youtube.googleapis.com/youtube/v3';
-
-  constructor(private readonly youtube_api_key: string) {}
+  private youtubeApiKey: string;
+  constructor() {
+    this.youtubeApiKey = process.env.YT_API_KEY;
+  }
 
   async loadInfo(
     videoId: string,
@@ -20,14 +24,14 @@ export class YoutubePersistenceAdapterService
         qs: {
           part: ['snippet', 'contentDetails', 'statistics'].join(','),
           id: videoId,
-          key: this.youtube_api_key,
+          key: this.youtubeApiKey,
         },
         headers: {
           Accept: 'application/json',
         },
       });
       const response = JSON.parse(rawResponse);
-      let rawDuration = response.items[0].contentDetatils.duration;
+      const rawDuration = response.items[0].contentDetatils.duration;
       const videoInfo: VideoInfo = {
         duration: 1,
         viewCount: response.items[0].statistices.viewCount,

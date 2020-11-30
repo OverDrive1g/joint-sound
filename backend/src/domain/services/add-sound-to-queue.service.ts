@@ -13,7 +13,7 @@ export class AddSoundToQueueService implements AddSoundToQueueUseCase {
   constructor(
     private readonly _loadQueue: LoadQueuePort,
     private readonly _updateQueue: UpdateQueuePort,
-    private readonly _loadVideoInfo: LoadVideoInfoFromYtPort,
+    private readonly _loadVideoInfo?: LoadVideoInfoFromYtPort,
   ) {}
 
   async execute(

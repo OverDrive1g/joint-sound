@@ -6,16 +6,20 @@ import { QueuePersistenceAdapterService } from './queue-persistence-adapter.serv
 import { AddSoundToQueueUseCaseSymbol } from '../../domain/ports/in/add-sound-to-queue/add-sound-to-queue.use-case';
 import { AddSoundToQueueService } from 'src/domain/services/add-sound-to-queue.service';
 import { CreateQueueService } from 'src/domain/services/create-queue.service';
+import { YoutubePersistenceAdapterService } from '../youtube-persistence/youtube-persistence-adapter.service';
 
 @Global()
 @Module({
-  imports: [TypeOrmModule.forFeature([QueueOrmEntity])],
+  imports: [
+    TypeOrmModule.forFeature([QueueOrmEntity]),
+    YoutubePersistenceAdapterService,
+  ],
   providers: [
     QueuePersistenceAdapterService,
     {
       provide: AddSoundToQueueUseCaseSymbol,
       useFactory: (service: QueuePersistenceAdapterService) => {
-        return new AddSoundToQueueService(service, service, service);
+        return new AddSoundToQueueService(service, service);
       },
       inject: [QueuePersistenceAdapterService],
     },
@@ -27,6 +31,6 @@ import { CreateQueueService } from 'src/domain/services/create-queue.service';
       inject: [QueuePersistenceAdapterService],
     },
   ],
-  exports: [CreateQueueUseCaseSymbol, AddSoundToQueueUseCaseSymbol],
+  exports: [AddSoundToQueueUseCaseSymbol, CreateQueueUseCaseSymbol],
 })
-export class QueuePersustenceModule {}
+export class QueuePersistenceModule {}

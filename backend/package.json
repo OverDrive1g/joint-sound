@@ -25,7 +25,9 @@
     "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/platform-socket.io": "^7.5.5",
     "@nestjs/typeorm": "^7.1.4",
+    "@nestjs/websockets": "^7.5.5",
     "@sweet-monads/either": "^2.1.4",
     "better-sqlite3": "^7.1.1",
     "reflect-metadata": "^0.1.13",
@@ -46,6 +48,7 @@
     "@types/node": "^13.9.1",
     "@types/request": "^2.48.5",
     "@types/request-promise": "^4.1.46",
+    "@types/socket.io": "^2.1.11",
     "@types/supertest": "^2.0.8",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
@@ -74,9 +77,7 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "setupFiles": [
-
-    ],
+    "setupFiles": [],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
