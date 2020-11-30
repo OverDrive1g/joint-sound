@@ -31,8 +31,11 @@
 <script>
 export default {
   name: "QueuePage",
-  beforeMount() {
+  mounted() {
     this.$socket.emit('subscribeToQueue', this.$route.params.id)
+    this.sockets.subscribe("next-track", function(data) {
+        console.log("next-track", data)
+    })
   },
   beforeRouteLeave(to, from, next){
     this.$socket.emit('unsubscribeToQueue', this.$route.params.id);
