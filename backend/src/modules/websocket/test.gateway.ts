@@ -25,13 +25,16 @@ export class TestGateway implements OnGatewayInit,OnGatewayConnection,OnGatewayD
   handleDisconnect(client: Socket) {
     console.log('Client disconnect');
   }
-  @SubscribeMessage('events')
-  handleEvent(@MessageBody() data: string): string {
-    console.log('sub ', data)
-    return data;
+  
+  @SubscribeMessage('subscribeToQueue')
+  subscribeToQueue(@MessageBody() data: string): string {
+    console.log('subscribeToQueue', data)
+    return ;
   }
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
-    return data;
+  @SubscribeMessage('unsubscribeToQueue')
+  unsubscribeToQueue(@MessageBody() data: string): string {
+    console.log('unsubscribeToQueue', data)
+    return ;
   }
+
 }

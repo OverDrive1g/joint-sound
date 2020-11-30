@@ -31,6 +31,13 @@
 <script>
 export default {
   name: "QueuePage",
+  beforeMount() {
+    this.$socket.emit('subscribeToQueue', this.$route.params.id)
+  },
+  beforeRouteLeave(to, from, next){
+    this.$socket.emit('unsubscribeToQueue', this.$route.params.id);
+    next()
+  },
   data: () => {
     return {
       currentTrack: {
